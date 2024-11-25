@@ -87,20 +87,21 @@ class _DescriptionViewWidgetState extends State<DescriptionViewWidget> {
               ),
               InkWell(
                 onTap: () {
-                  // Use the article's URL from the API to navigate
                   String articleUrl = widget.article.url ?? '';
                   if (articleUrl.isNotEmpty) {
                     _launchUrl(articleUrl);
                   } else {
-                    // Handle cases where the URL might be empty or null
                     ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(
+                      const SnackBar(
                           content: Text('No URL provided for this article')),
                     );
                   }
                 },
-                child: Text("View full article",
-                    style: TextStyle(color: Colors.blue)),
+                child: const Text(
+                  "View full article",
+                  style: TextStyle(color: Colors.blue),
+                  textAlign: TextAlign.end,
+                ),
               ),
             ],
           ),
