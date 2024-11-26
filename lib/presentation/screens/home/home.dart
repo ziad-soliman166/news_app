@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:news_app_primary/presentation/screens/home/tabs/article_list_widget/search_screen.dart';
 import 'package:news_app_primary/presentation/screens/home/tabs/categories/categories.dart';
 import 'package:news_app_primary/presentation/screens/home/tabs/categories/category_details/category_details.dart';
 import 'package:news_app_primary/presentation/screens/home/tabs/settings/settings.dart';
@@ -18,7 +19,6 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     selectedWidget = Categories(onCategoryClicked: onCategoryClicked);
   }
@@ -32,13 +32,28 @@ class _HomeState extends State<Home> {
           color: ColorsManager.white,
           image: DecorationImage(image: AssetImage(AssetsManager.bgPattern))),
       child: Scaffold(
-          appBar: AppBar(
-            title: const Text('News App'),
-          ),
-          drawer: HomeDrawer(
-            onMenuItemClicked: onDrawerItemClick,
-          ),
-          body: selectedWidget),
+        appBar: AppBar(
+          title: const Text('News App'),
+          actions: [
+            IconButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) =>
+                        const SearchScreen(), // Navigate to SearchScreen
+                  ),
+                );
+              },
+              icon: const Icon(Icons.search),
+            ),
+          ],
+        ),
+        drawer: HomeDrawer(
+          onMenuItemClicked: onDrawerItemClick,
+        ),
+        body: selectedWidget,
+      ),
     );
   }
 
